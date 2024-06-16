@@ -4,7 +4,7 @@ module.exports = {
   root: true,
   settings: {
     next: {
-      rootDir: ['basics/*/', 'dashboard/*/', 'seo/'],
+      rootDir: ['basics/*/', 'dashboard/*/', 'seo/' ],
     },
   },
 };
