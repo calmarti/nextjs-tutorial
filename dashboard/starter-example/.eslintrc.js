@@ -8,7 +8,7 @@ module.exports = {
     },
   },
   rules: {
-    'next/no-html-link-for-pages': 'warn', // Adjust severity as needed (warn, error)
+    'next/no-html-link-for-pages': 'off', // Adjust severity as needed (warn, error)
   },
 };
 
