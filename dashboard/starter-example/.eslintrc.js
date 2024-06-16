@@ -7,4 +7,9 @@ module.exports = {
       rootDir: ['basics/*/', 'dashboard/*/', 'seo/' ],
     },
   },
+  rules: {
+    'next/no-html-link-for-pages': 'warn', // Adjust severity as needed (warn, error)
+  },
 };
+
+
