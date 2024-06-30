@@ -1,6 +1,8 @@
 'use server';
 import { z } from 'zod'; //this library validates types
 import { sql } from '@vercel/postgres';
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 const FormSchema = z.object({
     id: z.string(),
@@ -13,6 +15,7 @@ const FormSchema = z.object({
 const CreateInvoice = FormSchema.omit({ id: true, date: true });
 
 export async function createInvoice(formData: FormData){
+    //console.log(formData);
     //When working with forms with lots of fields better use: 
     //Object.fromEntries(formData.entries()) instead of manually creating the object 
     const { customerId, amount, status } = CreateInvoice.parse({
@@ -26,4 +29,7 @@ export async function createInvoice(formData: FormData){
     await sql
     `INSERT INTO invoices (customer_id, amount, status, date)
     VALUES (${customerId}, ${amountInCents}, ${status}, ${date})`;
+
+    revalidatePath('/dashboard/invoices');  //deletes client-side cache for paths
+    redirect('/dashboard/invoices');
 }
